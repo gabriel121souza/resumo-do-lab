@@ -1,0 +1,38 @@
+Tipos de servico de Cloud
+
+Aqui está um resumo simples, usando a analogia clássica da "Pizza como Serviço":
+
+🍕 A Analogia da Pizza
+Imagine que você quer comer uma pizza. Você tem três opções:
+
+-  IaaS (Infraestrutura): Você aluga a cozinha (forno, gás, bancada). O resto é com você: comprar os ingredientes, fazer a massa, montar a pizza e assar.
+
+-  PaaS (Plataforma): Você pede a pizza por delivery. A pizzaria cuida da cozinha e de fazer a pizza. Você só precisa arrumar a mesa e servir as bebidas.
+
+-  SaaS (Software): Você vai jantar na pizzaria. Eles cuidam de tudo: a cozinha, os ingredientes, fazer a pizza, a mesa, as bebidas e até lavar a louça. Você só senta e come.
+
+💻 O Resumo Técnico
+Aplicando a analogia à tecnologia:
+
+  -  IaaS (Infrastructure as a Service)
+      - O que é: Aluguel de "Hardware" virtual.
+
+      - A nuvem gerencia: Os servidores físicos, a rede e o armazenamento (a "cozinha").
+
+      - Você gerencia: O sistema operacional (Windows, Linux), os bancos de dados, a segurança e sua aplicação.
+
+      - Exemplo: Máquinas Virtuais (VMs) no Azure, Amazon EC2.
+
+  -  PaaS (Platform as a Service)
+      - O que é: Uma plataforma pronta para você "rodar" seu código.
+      - A nuvem gerencia: O hardware E o sistema operacional, atualizações e patches (a "pizza pronta entregue").
+      - Você gerencia: Apenas a sua aplicação e seus dados.
+      - Exemplo: Azure App Service, Heroku, Google App Engine.
+
+  -  SaaS (Software as a Service)
+      - O que é: O software pronto para usar.
+      - A nuvem gerencia: TUDO. O hardware, o sistema operacional e o software (o "jantar completo").
+      - Você gerencia: Nada, você apenas usa o serviço.
+      - Exemplo: Gmail, Office 365, Salesforce, Netflix.
+
+Exemplo: Gmail, Office 365, Salesforce, Netflix.
