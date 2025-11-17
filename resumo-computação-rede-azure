@@ -1,0 +1,84 @@
+💻 1. Computação (Compute)
+É o serviço que executa suas aplicações. O Azure oferece diferentes níveis de controle. Do maior controle (e maior responsabilidade) para o menor:
+
+Máquinas Virtuais (VMs) - (IaaS)
+
+O que é: É um servidor completo (Windows ou Linux) na nuvem.
+
+Resumo: Você tem controle total. Você escolhe o SO, instala o que quiser, aplica patches de segurança e gerencia tudo. É a "Infraestrutura como Serviço".
+
+Use para: Migrar um servidor antigo ("lift-and-shift") ou quando você precisa de controle total do ambiente.
+
+Serviço de Aplicativo (App Service) - (PaaS)
+
+O que é: A melhor opção para hospedar aplicações web e APIs (Java, .NET, Node.js, etc.).
+
+Resumo: Você apenas sobe seu código (ex: seu arquivo .jar ou .war). O Azure cuida de todo o resto: o servidor, o sistema operacional, patches e balanceamento de carga. É a "Plataforma como Serviço".
+
+Use para: A maioria das aplicações web e microserviços.
+
+Serviço de Kubernetes do Azure (AKS) - (PaaS/Contêineres)
+
+O que é: É a forma de rodar Contêineres Docker em escala.
+
+Resumo: O Kubernetes (K8s) é o "orquestrador" que gerencia seus contêineres, e o AKS é o serviço gerenciado do Azure para isso. Você não gerencia os "nós mestres" do K8s, só os "nós de trabalho".
+
+Use para: Aplicações complexas baseadas em microserviços que já usam contêineres.
+
+Azure Functions (Serverless / FaaS)
+
+O que é: É o nível máximo de abstração. Você nem pensa em "servidor".
+
+Resumo: Você escreve apenas um pequeno pedaço de código (uma "função") que é disparado por um evento (ex: um upload de arquivo, uma chamada de API). Você só paga pelos milissegundos que sua função executa.
+
+Use para: Tarefas pequenas e rápidas (ex: processar uma imagem, rodar uma tarefa agendada).
+
+🌐 2. Rede (Networking)
+São os serviços que conectam e protegem seus recursos de computação, tanto entre si quanto com a internet.
+
+Rede Virtual (VNet - Virtual Network)
+
+O que é: É o alicerce. É a sua rede privada e isolada dentro do Azure.
+
+Resumo: Nenhum recurso (como uma VM) pode existir fora de uma VNet. Ela define seu espaço de IPs privados (ex: 10.0.0.0/16).
+
+Sub-redes (Subnets)
+
+O que é: São as "divisões" ou "bairros" dentro da sua VNet.
+
+Resumo: Você divide sua VNet em pedaços (ex: uma sub-rede 'frontend' e uma 'backend') para organizar e isolar recursos.
+
+Grupos de Segurança de Rede (NSG - Network Security Groups)
+
+O que é: É o firewall fundamental do Azure.
+
+Resumo: É uma lista de regras de "Permitir/Negar" tráfego. Você aplica um NSG a uma sub-rede ou a uma VM.
+
+Exemplo: Regra 1 (Entrada): Permitir tráfego da Internet na porta 443 (HTTPS). Regra 2 (Entrada): Negar todo o resto.
+
+Balanceador de Carga (Load Balancer)
+
+O que é: Distribui o tráfego de entrada (ex: da internet) entre vários servidores (VMs).
+
+Resumo: Garante que se uma VM falhar, as outras assumem (alta disponibilidade) e que nenhuma VM fique sobrecarregada (escalabilidade).
+
+Gateway de VPN vs. ExpressRoute (Como conectar seu escritório ao Azure)
+
+Gateway de VPN: Cria um "túnel" seguro e criptografado para sua VNet usando a Internet pública. Mais barato e mais comum.
+
+ExpressRoute: É uma conexão de fibra óptica privada e dedicada entre seu escritório e o datacenter do Azure. Não passa pela internet. É muito mais rápido, seguro e caro.
+
+💡 Como Tudo se Encaixa (Exemplo Prático)
+Você cria uma Rede (VNet).
+
+Você a divide em duas Sub-redes: sub-web e sub-banco.
+
+Você coloca seus servidores web (seja em VMs ou App Service) na sub-web (Computação).
+
+Você coloca seu Banco de Dados SQL na sub-banco.
+
+Você cria um NSG (Rede) e o aplica na sub-web, permitindo tráfego da Internet na porta 443.
+
+Você cria outro NSG (Rede) e o aplica na sub-banco, bloqueando toda a Internet, mas permitindo tráfego da sub-web na porta 3306 (banco).
+
+Este é o cerne dos serviços de IaaS (Infraestrutura) e PaaS (Plataforma) e é o principal tópico da certificação AZ-900.
