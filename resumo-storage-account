@@ -1,0 +1,54 @@
+A Base: Conta de Armazenamento (Storage Account)
+Pense na Conta de Armazenamento como uma "caixa" ou um "contêiner" principal no Azure. Tudo o que você armazena (seja um arquivo, um backup ou um disco de VM) vive dentro de uma Storage Account. Ela é o seu ponto central para gerenciar tudo.
+
+Dentro dela, existem 5 tipos principais de armazenamento:
+
+1. 📦 Armazenamento de Blobs (O mais importante!)
+O que é: Armazenamento de "objetos". É para guardar arquivos soltos e massivos, como fotos, vídeos, backups, arquivos de log, e instaladores.
+
+Não serve para: Rodar um sistema operacional ou ser um "drive de rede" compartilhado.
+
+O mais importante sobre Blobs são as Camadas de Acesso (Access Tiers), que definem o custo:
+
+Hot (Quente): Para dados acessados frequentemente. É mais caro para armazenar, mas mais barato para acessar.
+
+Cool (Frio): Para backups e dados acessados infrequentemente (guardados por mais de 30 dias). É mais barato para armazenar, mas mais caro para ler.
+
+Archive (Morto): Para arquivamento de longo prazo (ex: dados legais guardados por 7 anos). É extremamente barato para guardar, mas leva horas (e custa mais) para "desarquivar" e ler.
+
+2. 📁 Azure Files (O "Pendrive de Rede")
+O que é: Um compartilhamento de arquivos na nuvem, exatamente como um "Drive de Rede" (ex: Drive Z:) da sua empresa.
+
+Como funciona: Usa o protocolo padrão SMB (o mesmo do Windows) ou NFS (Linux).
+
+Principal uso: Várias máquinas virtuais (VMs) podem "montar" (conectar) o mesmo drive do Azure Files ao mesmo tempo para compartilhar arquivos.
+
+3. 💿 Azure Disk (O "HD da VM")
+O que é: É o disco (HD ou SSD) que é anexado a uma Máquina Virtual.
+
+Como funciona: É o "Disco C:" onde o sistema operacional da sua VM é instalado, ou o "Disco D:" que você usa para dados.
+
+Principal uso: É o armazenamento de alto desempenho necessário para uma VM rodar. (Existem Standard, Premium SSD, Ultra Disk, etc.).
+
+4. 📬 Azure Queue (O "Post-it")
+O que é: Um serviço de fila de mensagens simples.
+
+Como funciona: Um aplicativo (Produtor) escreve uma pequena mensagem (ex: "Processe o pedido #123") na fila. Outro aplicativo (Consumidor) lê essa mensagem quando tiver tempo e a processa.
+
+Principal uso: Desacoplar aplicações. Permite que um serviço da web rápido (que recebe o pedido) se comunique com um serviço de back-end lento (que processa o pedido) sem que um tenha que esperar pelo outro.
+
+5. 📈 Azure Table (O "Excel" Simples)
+O que é: Um banco de dados NoSQL muito simples, do tipo "chave-valor".
+
+Como funciona: Pense em uma planilha gigante. Não tem relacionamentos complexos como um banco SQL. É otimizado para leituras e escritas muito rápidas.
+
+Principal uso: Armazenar dados semi-estruturados, como perfis de usuário ou dados de telemetria de dispositivos (IoT).
+
+Redundância (Como o Azure Protege seus Dados)
+Este é um tópico crítico da prova. É como o Azure faz cópias dos seus dados para que eles não sejam perdidos.
+
+LRS (Local): 3 cópias no mesmo data center. Protege contra falha de um HD. (É o mais barato).
+
+ZRS (Zona): 3 cópias espalhadas por 3 data centers diferentes (Zonas de Disponibilidade) na mesma região. Protege se um data center inteiro falhar.
+
+GRS (Geográfico): 3 cópias na sua região (LRS) E mais 3 cópias em outra região a centenas de quilômetros de distância. Protege se uma região inteira (ex: um estado) for destruída por um desastre. (É o mais caro).
