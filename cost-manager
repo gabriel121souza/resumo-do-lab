@@ -1,1 +1,65 @@
-Aqui está o resumo focado no Microsoft Cost Management + Billing, estruturado como um README.md técnico para seus estudos de AZ-900.💰 AZ-900: Guia de Estudos - Azure Cost ManagementStatus: 🚧 Em ProgressoTópico: Gerenciamento de Custos e GovernançaObjetivo: Entender como monitorar, alocar e otimizar gastos na nuvem.📋 ÍndiceO que é o Cost Management?Calculadoras: TCO vs Pricing CalculatorFuncionalidades PrincipaisOrçamentos (Budgets)Alertas de CustoAnálise de CustoTags (Etiquetas)Checklist para o Exame☁️ O que é o Cost Management?É um conjunto de ferramentas nativas do Azure para ajudar você a visualizar, gerenciar e otimizar seus gastos na nuvem.Visibilidade: Mostra onde o dinheiro está sendo gasto.Responsabilidade (Accountability): Permite cobrar internamente departamentos ou projetos (Chargeback).Otimização: Ajuda a reduzir desperdícios.Diferença Importante:Cost Management: Foco em análise e otimização (Para devs/arquitetos).Billing (Faturamento): Foco em faturas, pagamentos e contratos (Para o financeiro/admin).🧮 Calculadoras: TCO vs Pricing CalculatorEssa é uma "pegadinha" clássica da prova. Você precisa saber quando usar qual.FerramentaNome CompletoQuando usar?Pergunta do ExamePricing CalculatorCalculadora de PreçosAntes de criar recursos na nuvem."Você quer estimar quanto custará uma nova VM com 32GB de RAM."TCO CalculatorTotal Cost of OwnershipPara planejar Migração (On-Premise -> Cloud)."Seu chefe quer saber quanto a empresa vai economizar movendo o Data Center físico para o Azure nos próximos 3 anos."Resumo:Pricing Calculator = Estimar custo de recursos individuais.TCO Calculator = Comparar economia Datacenter vs. Nuvem.🛠️ Funcionalidades PrincipaisOrçamentos (Budgets)Permite definir um limite de gastos para uma assinatura ou grupo de recursos.Não para o serviço: O orçamento NÃO desliga suas máquinas virtuais quando o limite é atingido (a menos que você crie uma automação complexa com Action Groups). Ele apenas avisa.Alertas de CustoNotificações enviadas quando o consumo atinge um limiar definido.Tipos de Gatilho:Custo Real: "Você já gastou 80% do orçamento."Custo Previsto (Forecasted): "Nesse ritmo, você vai estourar o orçamento na próxima semana."Análise de CustoPainéis gráficos (dashboards) que mostram o consumo diário/mensal.Permite filtrar por: Serviço, Localização, Subscription e Tags.🏷️ Tags (Etiquetas)Metadados (chave:valor) que você aplica aos recursos para organizar a fatura. O Cost Management depende pesadamente disso.Exemplo:VM 1 -> Tag: Projeto = "E-commerce"VM 2 -> Tag: Departamento = "RH"Uso: No final do mês, você filtra "Quanto o projeto E-commerce gastou?" sem precisar somar VM por VM manualmente.
+# 💰 AZ-900: Guia de Estudos - Azure Cost Management
+
+> **Status:** 🚧 Em Progresso  
+> **Tópico:** Gerenciamento de Custos e Governança  
+> **Foco:** Monitoramento, Alocação e Otimização de gastos.
+
+---
+
+## 📋 Índice
+- [1. Definição](#1-definição)
+- [2. As Calculadoras (Essencial)](#2-as-calculadoras-essencial)
+- [3. Funcionalidades Principais](#3-funcionalidades-principais)
+- [4. Tags (Etiquetas)](#4-tags-etiquetas)
+- [5. Checklist para a Prova](#5-checklist-para-a-prova)
+
+---
+
+## 1. Definição
+**Azure Cost Management** é um conjunto de ferramentas nativas para visualizar, gerenciar e otimizar gastos na nuvem.
+
+* **Visibilidade:** Dashboard de onde o dinheiro vai.
+* **Accountability:** Chargeback (cobrar departamentos internos).
+* **Otimização:** Identificar desperdícios.
+
+> 💡 **Nota:** *Cost Management* (Análise) é diferente de *Billing* (Faturas e Pagamentos).
+
+---
+
+## 2. As Calculadoras (Essencial)
+A diferença entre elas cai em quase todas as provas.
+
+| Ferramenta | Nome Original | Quando usar? | Palavra-chave na Prova |
+| :--- | :--- | :--- | :--- |
+| **Pricing Calculator** | Calculadora de Preços | **Antes** de criar o recurso. | *"Estimar custo de uma VM"* / *"Configurar produtos"* |
+| **TCO Calculator** | Total Cost of Ownership | Planejamento de **Migração**. | *"Comparar On-Premise vs Nuvem"* / *"Economia a longo prazo"* |
+
+---
+
+## 3. Funcionalidades Principais
+
+### 📉 Orçamentos (Budgets)
+Define um teto de gastos.
+* **Importante:** Por padrão, um budget **apenas alerta** quando o limite é atingido. Ele **NÃO** para/desliga os serviços (a menos que configurado com Action Groups).
+
+### 🔔 Alertas de Custo
+Notificações baseadas em consumo.
+1.  **Custo Real:** "Você atingiu 100% do valor."
+2.  **Custo Previsto (Forecast):** "Você vai estourar o orçamento semana que vem."
+
+### 📊 Análise de Custo
+Gráficos para exploração de dados.
+* Filtros: `Subscription`, `Resource Group`, `Tags`, `Location`.
+
+---
+
+## 4. Tags (Etiquetas)
+Metadados (`chave:valor`) usados para organizar recursos e **faturas**. O Cost Management depende delas para dividir custos.
+
+```json
+// Exemplo de uso de Tags para separar custos
+{
+  "Ambiente": "Producao",
+  "CentroDeCusto": "TI-Backend",
+  "Projeto": "API-Pagamentos"
+}
