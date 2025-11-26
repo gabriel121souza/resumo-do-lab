@@ -1,0 +1,96 @@
+# 🏛️ AZ-900: Governança e Conformidade (Versão PT-BR)
+
+> **Status:** 🇧🇷 Focado na Prova em Português
+> **Objetivo:** Decorar os termos traduzidos para não cair em pegadinhas.
+
+---
+
+## 📋 Índice
+- [1. Política do Azure (Azure Policy)](#1-política-do-azure-azure-policy)
+- [2. Bloqueios de Recurso (Resource Locks)](#2-bloqueios-de-recurso-resource-locks)
+- [3. Blueprints do Azure](#3-blueprints-do-azure)
+- [4. Microsoft Purview](#4-microsoft-purview)
+- [5. Portal de Confiança do Serviço](#5-portal-de-confiança-do-serviço)
+- [6. Estruturas de Adoção (CAF e WAF)](#6-estruturas-de-adoção-caf-e-waf)
+
+---
+
+## 1. Política do Azure (Azure Policy)
+É o "Fiscal" ou "Policial" da sua assinatura.
+* **Função:** Cria, atribui e gerencia políticas para impor regras aos seus recursos.
+* **O que faz:**
+    * **Impedir** a criação de recursos fora de conformidade (Ex: Impedir criar VM fora do Brasil).
+    * **Auditar** recursos que já existem e estão fora do padrão.
+    * **Adicionar** configurações automáticas (Ex: Instalar um agente de monitoramento se ele não existir).
+
+> **Na Prova:** Se a questão falar sobre "impor regras corporativas" ou "garantir conformidade técnica", a resposta é **Política do Azure**.
+
+---
+
+## 2. Bloqueios de Recurso (Resource Locks)
+É a "Trava de Segurança" para evitar acidentes humanos. Existem dois tipos na prova em português:
+
+| Tipo (PT-BR) | Tipo (Inglês) | O que faz? |
+| :--- | :--- | :--- |
+| **Exclusão** | CanNotDelete | Permite ler e alterar o recurso, mas **impede apagar**. |
+| **Somente Leitura** | ReadOnly | Permite apenas ler. **Ninguém** pode alterar ou apagar nada. |
+
+> **Cenário de Prova:** "Um administrador quer garantir que ninguém apague acidentalmente uma conta de armazenamento crítica, mas precisa conseguir alterar arquivos nela."
+> **Resposta:** Bloqueio de **Exclusão** (CanNotDelete).
+
+---
+
+## 3. Blueprints do Azure
+É o "Arquiteto" ou "Modelo". Serve para configurar ambientes inteiros de forma rápida e repetível.
+* **Diferença:** Enquanto o *modelo ARM* implanta recursos, o **Blueprint** implanta o ambiente todo com as regras de governança junto.
+* **O que ele agrupa (Artefatos):**
+    1.  Atribuições de Função (Quem acessa).
+    2.  Atribuições de Política (Regras).
+    3.  Modelos do Azure Resource Manager (ARM Templates).
+    4.  Grupos de Recursos.
+
+---
+
+## 4. Microsoft Purview
+A solução para governança de **dados**.
+* **Foco:** Rastrear dados. Ajuda a saber onde estão seus dados sensíveis (CPF, Cartão de Crédito) espalhados pela nuvem.
+* **Palavras-Chave:** *Catálogo de Dados*, *Linhagem de Dados*, *Classificação de Dados*.
+
+---
+
+## 5. Portal de Confiança do Serviço (Service Trust Portal)
+É um site público da Microsoft onde você baixa documentos legais e de auditoria.
+* **Cenário de Prova:** "O auditor da sua empresa pediu um relatório que comprove que a Microsoft segue a norma ISO 27001 ou a LGPD."
+* **Onde ir:** **Portal de Confiança do Serviço**.
+
+> **Nota:** Dentro dele existe o *Compliance Manager* (Gerenciador de Conformidade), que te dá uma "pontuação" de conformidade.
+
+---
+
+## 6. Estruturas de Adoção (CAF e WAF)
+São guias teóricos (documentação).
+
+| Sigla | Nome em Português | Foco |
+| :--- | :--- | :--- |
+| **CAF** | **Estrutura de Adoção da Nuvem** | Focado em **Pessoas e Processos**. Ajuda a empresa a *migrar* e adotar a nuvem. (Estratégia). |
+| **WAF** | **Estrutura Bem Arquitetada** | Focado na **Tecnologia**. Ajuda a verificar a qualidade da arquitetura. |
+
+### Os 5 Pilares do WAF (Decore):
+1.  Confiabilidade.
+2.  Segurança.
+3.  Otimização de Custos.
+4.  Excelência Operacional.
+5.  Eficiência de Performance.
+
+---
+
+## ✅ Resumão de Termos (Inglês -> Português)
+
+A prova pode misturar termos, fique atento a isso:
+
+* *Subscription* -> **Assinatura**.
+* *Management Group* -> **Grupo de Gerenciamento**.
+* *Resource Group* -> **Grupo de Recursos**.
+* *Tenant* -> **Locatário**.
+* *Availability Zone* -> **Zona de Disponibilidade**.
+* *Region Pair* -> **Par de Regiões**.
