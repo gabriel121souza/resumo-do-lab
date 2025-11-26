@@ -1,65 +1,70 @@
-# 💰 AZ-900: Guia de Estudos - Azure Cost Management
+# 💸 AZ-900: Planejamento e Gerenciamento de Custos
 
-> **Status:** 🚧 Em Progresso  
-> **Tópico:** Gerenciamento de Custos e Governança  
-> **Foco:** Monitoramento, Alocação e Otimização de gastos.
-
----
-
-## 📋 Índice
-- [1. Definição](#1-definição)
-- [2. As Calculadoras (Essencial)](#2-as-calculadoras-essencial)
-- [3. Funcionalidades Principais](#3-funcionalidades-principais)
-- [4. Tags (Etiquetas)](#4-tags-etiquetas)
-- [5. Checklist para a Prova](#5-checklist-para-a-prova)
+> **Status:** 🚧 Resumo de Estudo  
+> **Tópico:** Cost Management & Billing  
+> **Foco:** O que impacta o preço e como economizar.
 
 ---
 
-## 1. Definição
-**Azure Cost Management** é um conjunto de ferramentas nativas para visualizar, gerenciar e otimizar gastos na nuvem.
+## 1. Fatores que Afetam os Custos
+Não é só o "tamanho da máquina" que define o preço. Na prova, lembre-se destes fatores:
 
-* **Visibilidade:** Dashboard de onde o dinheiro vai.
-* **Accountability:** Chargeback (cobrar departamentos internos).
-* **Otimização:** Identificar desperdícios.
-
-> 💡 **Nota:** *Cost Management* (Análise) é diferente de *Billing* (Faturas e Pagamentos).
-
----
-
-## 2. As Calculadoras (Essencial)
-A diferença entre elas cai em quase todas as provas.
-
-| Ferramenta | Nome Original | Quando usar? | Palavra-chave na Prova |
-| :--- | :--- | :--- | :--- |
-| **Pricing Calculator** | Calculadora de Preços | **Antes** de criar o recurso. | *"Estimar custo de uma VM"* / *"Configurar produtos"* |
-| **TCO Calculator** | Total Cost of Ownership | Planejamento de **Migração**. | *"Comparar On-Premise vs Nuvem"* / *"Economia a longo prazo"* |
+* **Tipo de Recurso:** Cada serviço tem métricas diferentes (ex: Storage cobra por GB, VM cobra por CPU/Hora).
+* **Serviços:** Níveis diferentes (Tier) custam diferente (ex: Standard vs Premium).
+* **Localização (Região):** O mesmo recurso pode custar mais caro no "Brasil South" do que no "East US" devido a impostos e infraestrutura local.
+* **Tráfego de Dados (Bandwidth):**
+    * 📥 **Entrada (Ingress):** Geralmente **Gratuito**.
+    * 📤 **Saída (Egress):** Geralmente **Pago**. Dados saindo do Azure para a Internet ou para outra região (Peering) custam dinheiro.
 
 ---
 
-## 3. Funcionalidades Principais
+## 2. Ferramentas de Estimativa (Antes de gastar)
+A "pegadinha" clássica da prova é confundir estas duas:
 
-### 📉 Orçamentos (Budgets)
-Define um teto de gastos.
-* **Importante:** Por padrão, um budget **apenas alerta** quando o limite é atingido. Ele **NÃO** para/desliga os serviços (a menos que configurado com Action Groups).
-
-### 🔔 Alertas de Custo
-Notificações baseadas em consumo.
-1.  **Custo Real:** "Você atingiu 100% do valor."
-2.  **Custo Previsto (Forecast):** "Você vai estourar o orçamento semana que vem."
-
-### 📊 Análise de Custo
-Gráficos para exploração de dados.
-* Filtros: `Subscription`, `Resource Group`, `Tags`, `Location`.
+| Ferramenta | Objetivo | Palavra-Chave na Prova |
+| :--- | :--- | :--- |
+| **Pricing Calculator** | Estimar o custo mensal de produtos específicos do Azure. | *"Configurar uma VM"*, *"Simular fatura mensal"*. |
+| **TCO Calculator** | Comparar o custo de um Data Center local (On-Premises) x Azure. | *"Migração"*, *"Economia a longo prazo"*, *"Relatório de comparação"*. |
 
 ---
 
-## 4. Tags (Etiquetas)
-Metadados (`chave:valor`) usados para organizar recursos e **faturas**. O Cost Management depende delas para dividir custos.
+## 3. Microsoft Cost Management (Depois de gastar)
+Ferramenta para monitorar, alocar e otimizar.
 
-```json
-// Exemplo de uso de Tags para separar custos
-{
-  "Ambiente": "Producao",
-  "CentroDeCusto": "TI-Backend",
-  "Projeto": "API-Pagamentos"
-}
+### 📉 Funcionalidades Chave
+1.  **Cost Analysis:** Dashboard visual (pizza/barras) para ver gastos por dia, mês ou serviço.
+2.  **Budgets (Orçamentos):** Define um limite financeiro.
+    * *Nota:* O Budget envia **alertas** quando atinge o limite, ele **não desliga** os serviços automaticamente (a menos que você configure *Action Groups* complexos).
+3.  **Alertas:** Notificações baseadas em uso real ou previsão.
+
+### 🏷️ Tags (Etiquetas)
+Metadados (`Projeto: App1`, `Setor: RH`) essenciais para organizar a fatura. Sem tags, a fatura vem misturada e você não sabe quem gastou o quê.
+
+---
+
+## 4. Estratégias para Reduzir Custos (Economia)
+Como pagar menos pelo mesmo recurso:
+
+### A. Azure Reservations (Reservas)
+* **O que é:** Você se compromete a usar um recurso por **1 ou 3 anos**.
+* **Desconto:** Até 72% de desconto em comparação ao preço "Pay-as-you-go" (Pagamento conforme o uso).
+* **Ideal para:** Cargas de trabalho previsíveis que rodam 24/7 (ex: Banco de Dados de Produção).
+
+### B. Azure Spot Instances (Instâncias Spot)
+* **O que é:** Usa capacidade ociosa dos datacenters da Microsoft.
+* **Desconto:** Até 90% de desconto.
+* **O Risco:** A Microsoft pode **tomar a máquina de volta** a qualquer momento se precisar da capacidade.
+* **Ideal para:** Processamento em lote, renderização, testes que podem ser interrompidos.
+
+### C. Azure Hybrid Benefit
+* **O que é:** Permite usar suas licenças de **Windows Server** ou **SQL Server** que você já comprou localmente (com Software Assurance) dentro do Azure.
+* **Benefício:** Você não paga pela licença na nuvem, apenas pela infraestrutura (compute).
+
+---
+
+## ✅ Resumo Rápido para Questões
+- [ ] **Quer saber quanto vai gastar na VM nova?** -> *Pricing Calculator*.
+- [ ] **Quer convencer o chefe a migrar o servidor físico?** -> *TCO Calculator*.
+- [ ] **Quer separar os custos do RH e do TI?** -> *Tags*.
+- [ ] **Tem uma VM que não pode desligar nunca?** -> *Azure Reservations*.
+- [ ] **Tem um script de teste barato que pode falhar?** -> *Spot Instance*.
