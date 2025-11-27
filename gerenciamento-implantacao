@@ -1,0 +1,75 @@
+# 🛠️ AZ-900: Ferramentas de Gerenciamento e Implantação
+
+> **Status:** 🇧🇷 Focado na Prova em Português
+> **Tópico:** Management & Deployment
+> **Objetivo:** Diferenciar as ferramentas de interação e entender automação (IaC).
+
+---
+
+## 📋 Índice
+- [1. O "Cérebro": Azure Resource Manager (ARM)](#1-o-cérebro-azure-resource-manager-arm)
+- [2. Ferramentas de Interação (Como falar com o Azure)](#2-ferramentas-de-interação-como-falar-com-o-azure)
+- [3. Infraestrutura como Código (IaC)](#3-infraestrutura-como-código-iac)
+- [4. Gerenciamento Híbrido: Azure Arc](#4-gerenciamento-híbrido-azure-arc)
+- [5. Resumo de Comandos para a Prova](#5-resumo-de-comandos-para-a-prova)
+
+---
+
+## 1. O "Cérebro": Azure Resource Manager (ARM)
+É a **camada de gerenciamento** que recebe todas as solicitações do usuário. Não importa se você clica no Portal ou digita um comando, tudo passa pelo ARM.
+
+* **Função:** Autentica, autoriza e envia o comando para o serviço correto.
+* **Benefícios:**
+    * Gerenciar recursos em grupos (Resource Groups).
+    * Aplicar **Tags** e **Controle de Acesso** (RBAC).
+    * Garantir consistência na implantação.
+
+---
+
+## 2. Ferramentas de Interação (Como falar com o Azure)
+A prova vai descrever um cenário e perguntar qual ferramenta usar.
+
+| Ferramenta | Tipo | Palavras-Chave na Prova |
+| :--- | :--- | :--- |
+| **Portal do Azure** | Gráfica (Web) | *"Interface baseada na web"*, *"Iniciantes"*, *"Visualizar gráficos"*, *"Tarefas únicas"*. |
+| **Azure PowerShell** | Linha de Comando | *"Automação"*, *"Scripts"*, *"Windows"*, comandos no formato `Verbo-Substantivo` (ex: `Get-AzVM`). |
+| **Azure CLI** | Linha de Comando | *"Automação"*, *"Scripts"*, *"Bash/Linux"*, *"Cross-platform"*, comandos começam com `az` (ex: `az vm list`). |
+| **Azure Cloud Shell** | Navegador (Web) | *"Acesso a linha de comando sem instalar nada"*, *"Terminal no browser"*, *"Máquina temporária"*. (Suporta tanto Bash quanto PowerShell). |
+| **App Móvel do Azure** | Celular (iOS/Android) | *"Monitorar em movimento"*, *"Reiniciar VM fora do escritório"*, *"Receber alertas no celular"*. |
+
+---
+
+## 3. Infraestrutura como Código (IaC)
+Em vez de configurar servidores manualmente, você escreve o que quer em um arquivo de texto.
+
+### Modelos ARM (ARM Templates)
+* **Formato:** Arquivos **JSON** (JavaScript Object Notation).
+* **Conceito:** Sintaxe **Declarativa**.
+    * *Declarativo:* Você diz "Eu quero uma VM tamanho B1s". (Você define o **resultado final**).
+    * *Imperativo:* Você diz "Abra a porta 80, depois crie o disco..." (Você define o **passo a passo**).
+* **Vantagem:** Garante que o ambiente de Teste seja **idêntico** ao de Produção.
+
+### Bicep
+Uma linguagem mais nova criada pela Microsoft para ser mais simples que o JSON, mas com o mesmo objetivo.
+
+---
+
+## 4. Gerenciamento Híbrido: Azure Arc
+Permite gerenciar recursos que **NÃO** estão no Azure (ex: servidores locais na sua empresa ou na AWS) usando a interface do Azure.
+
+* **Cenário de Prova:** "Você tem servidores Windows Server no seu escritório local e quer aplicar Políticas do Azure e ver logs deles no Portal."
+* **Solução:** Instalar o **Azure Arc**.
+
+---
+
+## 5. Resumo de Comandos para a Prova
+
+A prova não pede para você escrever código, mas pede para **identificar** qual linguagem é.
+
+| Linguagem | Aparência do Comando |
+| :--- | :--- |
+| **PowerShell** | `New-AzResourceGroup -Name "RG1" -Location "BrazilSouth"` <br> *(Sempre usa o padrão Verbo-AzObjeto)* |
+| **CLI (Bash)** | `az group create --name RG1 --location brazilsouth` <br> *(Sempre começa com `az`)* |
+| **JSON (ARM)** | `"$schema": "https://schema.management.azure.com...", "resources": [...]` <br> *(Muitas chaves `{ }` e aspas)* |
+
+---
