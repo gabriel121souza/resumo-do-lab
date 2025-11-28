@@ -1,0 +1,69 @@
+# 📊 AZ-900: Ferramentas de Monitoramento
+
+> **Status:** 🇧🇷 Focado na Prova em Português
+> **Tópico:** Monitoring & Reporting
+> **Objetivo:** Saber distinguir Azure Monitor, Service Health e Advisor.
+
+---
+
+## 📋 Índice
+- [1. Azure Monitor (O Guarda-Chuva)](#1-azure-monitor-o-guarda-chuva)
+- [2. Azure Service Health (Integridade do Serviço)](#2-azure-service-health-integridade-do-serviço)
+- [3. Azure Advisor (O Consultor)](#3-azure-advisor-o-consultor)
+- [4. Tabela: Qual ferramenta usar?](#4-tabela-qual-ferramenta-usar)
+
+---
+
+## 1. Azure Monitor (O Guarda-Chuva)
+É a solução central para coletar, analisar e agir com base na telemetria dos **seus** recursos (Suas VMs, seus bancos de dados, seus aplicativos).
+
+### Dois tipos de dados principais:
+1.  **Métricas:** Números em tempo real. Leves e rápidos.
+    * *Exemplo:* % de CPU, Memória livre, Rede usada.
+2.  **Logs:** Registros de texto detalhados.
+    * *Exemplo:* Histórico de quem acessou o banco de dados, logs de erro do IIS/Apache.
+
+### Recursos dentro do Monitor:
+* **Application Insights:** Monitoramento focado em **código/aplicação**. Detecta bugs e lentidão no seu código (Java, .NET, Python).
+* **Log Analytics:** Ferramenta para escrever "queries" (consultas) complexas nos logs usando a linguagem KQL.
+* **Alertas:** Envia um e-mail ou SMS quando, por exemplo, a CPU passa de 90%.
+
+---
+
+## 2. Azure Service Health (Integridade do Serviço)
+Foca no status da **plataforma Azure** (Microsoft), não no seu código.
+
+* **Pergunta chave:** "O problema é comigo ou o Azure caiu?"
+* **Divide-se em 3 áreas:**
+    1.  **Problemas de Serviço:** Indisponibilidades atuais (Ex: O Storage na região *Brazil South* caiu).
+    2.  **Manutenção Planejada:** A Microsoft avisa que vai reiniciar servidores para update na próxima semana.
+    3.  **Avisos de Integridade:** Informações sobre serviços que serão descontinuados (aposentados).
+
+> **Cenário de Prova:** Você recebe um alerta de que sua VM reiniciou. Você quer saber se houve uma falha no datacenter da Microsoft. Onde olhar? -> **Azure Service Health**.
+
+---
+
+## 3. Azure Advisor (O Consultor)
+Ferramenta que analisa sua conta e dá **recomendações** de melhores práticas personalizadas. Ele não monitora erros em tempo real, ele "audita" sua configuração.
+
+### Os 5 Pilares de Recomendação (Importante decorar):
+1.  **Custo:** "Você tem uma VM ligada que ninguém usa. Desligue para economizar."
+2.  **Segurança:** "Sua porta RDP está aberta para a internet. Feche-a."
+3.  **Confiabilidade (Alta Disponibilidade):** "Você só tem uma VM. Use um Availability Set."
+4.  **Desempenho:** "Seu banco de dados está lento. Aumente o SKU."
+5.  **Excelência Operacional:** "Você não criou alertas. Crie um."
+
+---
+
+## 4. Tabela: Qual ferramenta usar?
+
+Essa tabela resume 80% das questões desse módulo.
+
+| Cenário | Ferramenta Correta |
+| :--- | :--- |
+| Quero saber a **% de CPU** da minha VM agora. | **Azure Monitor** |
+| Quero saber se o **Azure está fora do ar** na minha região. | **Azure Service Health** |
+| Quero dicas para **pagar menos** na fatura. | **Azure Advisor** |
+| Quero investigar um **erro no código** Java/Spring da minha API. | **Application Insights** (parte do Monitor) |
+| Quero saber quando a Microsoft fará **manutenção** nos servidores. | **Azure Service Health** |
+| Quero dicas para melhorar a **segurança** das minhas VMs. | **Azure Advisor** |
